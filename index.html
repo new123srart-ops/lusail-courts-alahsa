@@ -963,7 +963,15 @@
 
         // إعدادات Firebase من البيئة المحيطة
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'lusail-stadiums-alahsa';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+        const const firebaseConfig = {
+  apiKey: "AIzaSyAsyZRMUdeHV5S2Sb054MxUuohAMDk jMAI".replace(/\s+/g, ""),
+  authDomain: "lusail-courts-alahsa.firebaseapp.com",
+  projectId: "lusail-courts-alahsa",
+  storageBucket: "lusail-courts-alahsa.firebasestorage.app",
+  messagingSenderId: "740552256998",
+  appId: "1:740552256998:web:e8fe59ff6f82348e4cba27",
+  measurementId: "G-4R7CG3MLFM"
+}; = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
 
         let db = null;
         let auth = null;
