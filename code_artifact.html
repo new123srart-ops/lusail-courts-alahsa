@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملاعب لوسيل | الطرف - الأحساء</title>
+    <!-- تحميل Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- تحميل خط Cairo و Tajawal من Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- مكتبة أيقونات Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        tajawal: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        lusail: {
+                            dark: '#061a12',
+                            darker: '#03100b',
+                            green: '#0d4a30',
+                            emerald: '#10b981',
+                            lime: '#84cc16',
+                            gold: '#eab308',
+                            goldlight: '#fde047'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-cairo bg-lusail-darker text-white antialiased selection:bg-lusail-emerald selection:text-white overflow-x-hidden">
+
+    <!-- الشريط العلوي (Navbar) -->
+    <header class="fixed top-0 w-full z-50 bg-lusail-darker/90 backdrop-blur-md border-b border-emerald-900/50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- الشعار -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-lusail-emerald to-lusail-green flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-futbol text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl sm:text-2xl font-black tracking-tight text-white block leading-none">ملاعب <span class="text-lusail-emerald">لوسيل</span></span>
+                        <span class="text-xs text-emerald-300/80 font-tajawal">الطرف • الأحساء</span>
+                    </div>
+                </a>
+
+                <!-- روابط التنقل (سطح المكتب) -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-gray-200">
+                    <a href="#courts" class="hover:text-lusail-emerald transition-colors">الملاعب والأسعار</a>
+                    <a href="#facilities" class="hover:text-lusail-emerald transition-colors">المرافق والخدمات</a>
+                    <a href="#reviews" class="hover:text-lusail-emerald transition-colors">آراء اللاعبين</a>
+                    <a href="#location" class="hover:text-lusail-emerald transition-colors">الموقع وساعات العمل</a>
+                </nav>
+
+                <!-- أزرار الإجراءات السريعة -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <button onclick="openOwnerModal()" class="px-4 py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-lusail-goldlight text-sm font-bold flex items-center gap-2 transition-all cursor-pointer">
+                        <i class="fa-solid fa-shield-halved text-lusail-gold"></i>
+                        <span>لوحة المالك</span>
+                    </button>
+                    <a href="#booking" class="px-5 py-2.5 rounded-xl bg-gradient-to-l from-lusail-emerald to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-lusail-darker font-extrabold text-sm shadow-lg shadow-emerald-500/25 transition-all transform hover:-translate-y-0.5">
+                        احجز ملعبك الآن
+                    </a>
+                </div>
+
+                <!-- زر القائمة للجوال -->
+                <button id="mobile-menu-btn" aria-label="القائمة" class="md:hidden p-2.5 rounded-xl bg-emerald-950 border border-emerald-800 text-emerald-400 hover:text-white">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- قائمة الجوال المنسدلة -->
+        <div id="mobile-menu" class="hidden md:hidden bg-lusail-dark border-b border-emerald-900/60 px-4 pt-2 pb-6 space-y-3">
+            <a href="#courts" class="block py-2.5 px-3 rounded-lg hover:bg-emerald-900/40 font-bold text-gray-200">الملاعب والأسعار</a>
+            <a href="#facilities" class="block py-2.5 px-3 rounded-lg hover:bg-emerald-900/40 font-bold text-gray-200">المرافق والخدمات</a>
+            <a href="#reviews" class="block py-2.5 px-3 rounded-lg hover:bg-emerald-900/40 font-bold text-gray-200">آراء اللاعبين</a>
+            <a href="#location" class="block py-2.5 px-3 rounded-lg hover:bg-emerald-900/40 font-bold text-gray-200">الموقع وساعات العمل</a>
+            <div class="pt-3 flex flex-col gap-2 border-t border-emerald-900/60">
+                <a href="#booking" class="w-full py-3 rounded-xl bg-lusail-emerald text-lusail-darker font-extrabold text-center">احجز ملعبك الآن</a>
+                <button onclick="openOwnerModal()" class="w-full py-3 rounded-xl bg-amber-500/20 border border-amber-500/40 text-lusail-goldlight font-bold text-center flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-lusail-gold"></i> دخول المالك / إدارة الحجوزات
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي (Hero Section) -->
+    <section class="relative pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden">
+        <!-- خلفية هندسية مستوحاة من تخطيط الملاعب والإضاءة الليلية -->
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-900/40 via-lusail-darker to-lusail-darker -z-10"></div>
+        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-lusail-emerald/15 blur-[120px] rounded-full -z-10"></div>
+        
+        <!-- خطوط ملعب خفيفة في الخلفية -->
+        <div class="absolute inset-x-4 top-24 bottom-8 border border-emerald-500/10 rounded-3xl pointer-events-none max-w-7xl mx-auto"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- النصوص الرئيسية -->
+                <div class="lg:col-span-7 text-center lg:text-right space-y-6">
+                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-emerald-950/90 border border-emerald-700/60 text-emerald-300 text-xs sm:text-sm font-bold shadow-inner">
+                        <span class="w-2.5 h-2.5 rounded-full bg-lusail-emerald animate-pulse"></span>
+                        <span>مفتوح على مدار الساعة 24/7 في الطرف - الأحساء</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight text-white">
+                        عيش أجواء البطولات في 
+                        <span class="text-transparent bg-clip-text bg-gradient-to-l from-lusail-emerald via-lusail-lime to-lusail-gold">ملاعب لوسيل</span>
+                    </h1>
+
+                    <p class="text-gray-300 text-base sm:text-lg lg:text-xl font-tajawal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        وجهة الرياضيين الأولى في الأحساء. نوفر لكم ملاعب كرة قدم بمقاسات متعددة وملعب بادل حديث بأرضيات عالية الجودة، إضاءة ليلية احترافية، ومرافق متكاملة تضمن لك تجربة لعب استثنائية.
+                    </p>
+
+                    <!-- أزرار الدعوة لاتخاذ إجراء -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#booking" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-l from-lusail-emerald to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-lusail-darker font-black text-base sm:text-lg shadow-xl shadow-emerald-500/20 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-1">
+                            <i class="fa-regular fa-calendar-check text-xl"></i>
+                            <span>احجز موعدك الآن</span>
+                        </a>
+                        <a href="https://wa.me/966542300780" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-emerald-950/90 hover:bg-emerald-900 border border-emerald-700/70 text-white font-bold text-base sm:text-lg flex items-center justify-center gap-3 transition-all">
+                            <i class="fa-brands fa-whatsapp text-lusail-emerald text-2xl"></i>
+                            <span>تواصل واتساب</span>
+                        </a>
+                    </div>
+
+                    <!-- إحصائيات سريعة -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-emerald-900/60 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-black text-lusail-gold">3</div>
+                            <div class="text-xs sm:text-sm text-gray-400 font-tajawal">ملاعب متنوعة ومجهزة</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-black text-lusail-emerald">24/7</div>
+                            <div class="text-xs sm:text-sm text-gray-400 font-tajawal">استقبال وحجوزات مستمرة</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-black text-white flex items-center justify-center lg:justify-start gap-1">
+                                <span>4.1</span>
+                                <i class="fa-solid fa-star text-lusail-gold text-lg"></i>
+                            </div>
+                            <div class="text-xs sm:text-sm text-gray-400 font-tajawal">تقييم اللاعبين والزوار</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- بطاقة بصرية / رسم توضيحي احترافي للملعب -->
+                <div class="lg:col-span-5">
+                    <div class="relative rounded-3xl bg-gradient-to-b from-emerald-900/50 to-lusail-dark border border-emerald-700/40 p-6 sm:p-8 shadow-2xl">
+                        <!-- شارة ذهبية -->
+                        <div class="absolute -top-4 left-6 bg-gradient-to-r from-lusail-gold to-amber-500 text-lusail-darker font-black text-xs px-4 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                            <i class="fa-solid fa-trophy"></i>
+                            <span>استضافة الدورات والبطولات</span>
+                        </div>
+
+                        <!-- رسم SVG تفاعلي لملعب كرة قدم وبادل -->
+                        <div class="rounded-2xl overflow-hidden bg-emerald-950/80 border border-emerald-800/60 p-4 mb-6 relative">
+                            <svg viewBox="0 0 400 240" class="w-full h-auto drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <pattern id="grass" width="40" height="240" patternUnits="userSpaceOnUse">
+                                        <rect width="20" height="240" fill="#065f46" />
+                                        <rect x="20" width="20" height="240" fill="#047857" />
+                                    </pattern>
+                                </defs>
+                                <!-- أرضية الملعب -->
+                                <rect x="10" y="10" width="380" height="220" rx="12" fill="url(#grass)" stroke="#34d399" stroke-width="3"/>
+                                <!-- خط المنتصف -->
+                                <line x1="200" y1="10" x2="200" y2="230" stroke="#a7f3d0" stroke-width="2.5"/>
+                                <!-- دائرة المنتصف -->
+                                <circle cx="200" cy="120" r="35" fill="none" stroke="#a7f3d0" stroke-width="2.5"/>
+                                <circle cx="200" cy="120" r="4" fill="#fde047"/>
+                                <!-- منطقة الجزاء اليمنى -->
+                                <rect x="330" y="65" width="60" height="110" fill="none" stroke="#a7f3d0" stroke-width="2.5"/>
+                                <rect x="368" y="92" width="22" height="56" fill="none" stroke="#a7f3d0" stroke-width="2"/>
+                                <!-- منطقة الجزاء اليسرى -->
+                                <rect x="10" y="65" width="60" height="110" fill="none" stroke="#a7f3d0" stroke-width="2.5"/>
+                                <rect x="10" y="92" width="22" height="56" fill="none" stroke="#a7f3d0" stroke-width="2"/>
+                                <!-- كشافات إضاءة -->
+                                <circle cx="20" cy="20" r="5" fill="#fde047" opacity="0.9"/>
+                                <circle cx="380" cy="20" r="5" fill="#fde047" opacity="0.9"/>
+                                <circle cx="20" cy="220" r="5" fill="#fde047" opacity="0.9"/>
+                                <circle cx="380" cy="220" r="5" fill="#fde047" opacity="0.9"/>
+                            </svg>
+                            <div class="mt-3 flex items-center justify-between text-xs text-emerald-200 font-bold px-1">
+                                <span><i class="fa-solid fa-lightbulb text-lusail-gold ml-1"></i> إضاءة LED ليلية فائقة</span>
+                                <span><i class="fa-solid fa-layer-group text-lusail-emerald ml-1"></i> عشب صناعي معتمد</span>
+                            </div>
+                        </div>
+
+                        <!-- بطاقة معلومات سريعة -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3.5 rounded-xl bg-lusail-darker/80 border border-emerald-800/40">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-lusail-emerald flex items-center justify-center">
+                                        <i class="fa-solid fa-location-dot text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-gray-400">الموقع</div>
+                                        <div class="text-sm font-bold text-white">الطرف، الفضول - الأحساء</div>
+                                    </div>
+                                </div>
+                                <a href="#location" class="text-xs font-bold text-lusail-emerald hover:underline">الخريطة ←</a>
+                            </div>
+
+                            <div class="flex items-center justify-between p-3.5 rounded-xl bg-lusail-darker/80 border border-emerald-800/40">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-lusail-gold flex items-center justify-center">
+                                        <i class="fa-solid fa-headset text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-gray-400">للحجز المباشر والتنسيق</div>
+                                        <div class="text-sm font-bold text-white" dir="ltr">054 230 0780</div>
+                                    </div>
+                                </div>
+                                <a href="tel:0542300780" class="px-3 py-1.5 rounded-lg bg-emerald-600/20 text-lusail-emerald text-xs font-bold hover:bg-emerald-600/30 transition">اتصل الآن</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الملاعب والباقات (Courts Section) -->
+    <section id="courts" class="py-20 bg-lusail-dark/70 border-y border-emerald-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-lusail-emerald font-extrabold text-sm tracking-wider uppercase">خيارات تناسب جميع الفرق</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white">ملاعبنا المجهزة بأعلى المعايير</h2>
+                <p class="text-gray-400 font-tajawal text-base sm:text-lg">
+                    سواء كنت تبحث عن ملعب واسع لإقامة بطولة أو مباراة تنافسية، أو ملعب سريع للتحديات الشبابية، أو ملعب بادل عصري؛ ملاعب لوسيل جاهزة لاستقبالكم.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 1. ملعب كرة القدم الكبير -->
+                <div class="group rounded-3xl bg-lusail-darker border border-emerald-800/50 hover:border-lusail-emerald/80 p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-lusail-emerald to-lusail-lime"></div>
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-900/60 border border-emerald-700/50 flex items-center justify-center text-lusail-emerald text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-futbol"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-emerald-950 border border-emerald-700/60 text-emerald-300 text-xs font-bold">الأكثر طلباً للبطولات</span>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-2">ملعب كرة القدم الكبير</h3>
+                        <p class="text-gray-400 font-tajawal text-sm leading-relaxed mb-6">
+                            مساحة رحبة مثالية للمباريات الكاملة، الدورات الرمضانية، والبطولات الرياضية مع مساحات جانبية مريحة للجماهير والاحتياط.
+                        </p>
+                        <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-lusail-emerald"></i>
+                                <span>مناسب لمباريات 8×8 و 9×9</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-lusail-emerald"></i>
+                                <span>عشب صناعي كثيف ومريح للمفاصل</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-lusail-emerald"></i>
+                                <span>إضاءة كشافات محيطية عالية الوضوح</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-lusail-emerald"></i>
+                                <span>إمكانية حجز باقات البطولات والدورات</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pt-5 border-t border-emerald-900/60">
+                        <button onclick="selectCourtAndScroll('ملعب كرة القدم الكبير')" class="w-full py-3.5 rounded-xl bg-emerald-900/60 hover:bg-lusail-emerald text-white hover:text-lusail-darker font-extrabold text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer">
+                            <span>اختر هذا الملعب للحجز</span>
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. ملعب كرة القدم الصغير -->
+                <div class="group rounded-3xl bg-lusail-darker border border-emerald-800/50 hover:border-lusail-emerald/80 p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-emerald-500 to-teal-400"></div>
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-900/60 border border-emerald-700/50 flex items-center justify-center text-teal-400 text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-teal-950 border border-teal-700/60 text-teal-300 text-xs font-bold">تحديات سريعة</span>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-2">ملعب كرة القدم الصغير</h3>
+                        <p class="text-gray-400 font-tajawal text-sm leading-relaxed mb-6">
+                            مصمم خصيصاً للتمارين اليومية، التجمعات الشبابية السريعة، ومباريات السداسيات والسباعيات ذات الإيقاع السريع.
+                        </p>
+                        <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-teal-400"></i>
+                                <span>مناسب لمباريات 5×5 و 6×6</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-teal-400"></i>
+                                <span>شبك حماية علوي وجانبي متكامل</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-teal-400"></i>
+                                <span>تخطيط واضح ومرامي قياسية</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-teal-400"></i>
+                                <span>متاح للحجز بالساعة طوال 24 ساعة</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pt-5 border-t border-emerald-900/60">
+                        <button onclick="selectCourtAndScroll('ملعب كرة القدم الصغير')" class="w-full py-3.5 rounded-xl bg-emerald-900/60 hover:bg-teal-400 text-white hover:text-lusail-darker font-extrabold text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer">
+                            <span>اختر هذا الملعب للحجز</span>
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. ملعب البادل (Padel Court) -->
+                <div class="group rounded-3xl bg-lusail-darker border border-amber-500/40 hover:border-lusail-gold p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-lusail-gold to-amber-500"></div>
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-amber-950/60 border border-amber-600/50 flex items-center justify-center text-lusail-gold text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-amber-950 border border-amber-600/60 text-lusail-goldlight text-xs font-bold">ملعب بادل حديث</span>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-2">ملعب البادل (Padel)</h3>
+                        <p class="text-gray-400 font-tajawal text-sm leading-relaxed mb-6">
+                            ملعب بادل بمواصفات احترافية لعشاق رياضة البادل في الأحساء، مزود بزجاج سيكوريت مقوى وأرضية مخصصة للارتداد المثالي.
+                        </p>
+                        <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-lusail-gold"></i>
+                                <span>مباريات زوجية حماسية (2×2)</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-lusail-gold"></i>
+                                <span>جدران زجاجية بانورامية عالية الجودة</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-lusail-gold"></i>
+                                <span>إضاءة LED مانعة للتوهج أثناء اللعب</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-lusail-gold"></i>
+                                <span>جلسات جانبية مريحة للاعبين</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pt-5 border-t border-emerald-900/60">
+                        <button onclick="selectCourtAndScroll('ملعب البادل (Padel)')" class="w-full py-3.5 rounded-xl bg-amber-500/20 hover:bg-lusail-gold text-lusail-goldlight hover:text-lusail-darker font-extrabold text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer">
+                            <span>اختر ملعب البادل للحجز</span>
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المرافق والخدمات (Facilities Section) -->
+    <section id="facilities" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
+                <span class="text-lusail-gold font-extrabold text-sm">لماذا يفضلنا اللاعبون؟</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white">مرافق متكاملة لراحتكم</h2>
+                <p class="text-gray-400 font-tajawal">نحرص في ملاعب لوسيل على الاهتمام بأدق التفاصيل لضمان تجربة رياضية نظيفة ومريحة.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 rounded-2xl bg-lusail-dark/80 border border-emerald-900/60 hover:border-emerald-600/60 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-lusail-emerald flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-square-parking"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">مواقف سيارات واسعة</h3>
+                    <p class="text-sm text-gray-400 font-tajawal leading-relaxed">مساحات خارجية رحبة ومنظمة تتسع لسيارات جميع اللاعبين والزوار بكل سهولة.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-lusail-dark/80 border border-emerald-900/60 hover:border-emerald-600/60 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-lusail-emerald flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-restroom"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">دورات مياه متعددة</h3>
+                    <p class="text-sm text-gray-400 font-tajawal leading-relaxed">مرافق صحية نظيفة وموزعة لخدمة مرتادي الملاعب وتتم العناية بها باستمرار.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-lusail-dark/80 border border-emerald-900/60 hover:border-emerald-600/60 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-lusail-gold flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-medal"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">تنظيم البطولات</h3>
+                    <p class="text-sm text-gray-400 font-tajawal leading-relaxed">جاهزية كاملة لاستضافة الدورات الرياضية والبطولات الرمضانية وتنسيق الجداول.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-lusail-dark/80 border border-emerald-900/60 hover:border-emerald-600/60 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-lusail-emerald flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">صيانة وتطوير مستمر</h3>
+                    <p class="text-sm text-gray-400 font-tajawal leading-relaxed">إدارة متعاونة تهتم بنظافة الملاعب وتطوير الأرضيات والإضاءة بشكل دوري.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الحجز الإلكتروني التفاعلي متعدد الحجوزات (Booking Section) -->
+    <section id="booking" class="py-20 bg-gradient-to-b from-lusail-dark to-lusail-darker border-t border-emerald-900/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950 border border-emerald-700/60 text-lusail-emerald text-xs font-bold">
+                    <span class="w-2 h-2 rounded-full bg-lusail-emerald animate-ping"></span>
+                    <span>نظام حجز فوري ومباشر 24/7</span>
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white">جدول الأوقات والحجز المباشر</h2>
+                <p class="text-gray-400 font-tajawal text-base">
+                    اختر الملعب والتاريخ لمشاهدة الأوقات المتاحة والمحجوزة بدقة (بنظام نصف الساعة) وتأكيد حجزك فوراً دون تعارض.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- العمود الأيمن: جدول الفترات الزمنية المباشر (Timeline Grid) -->
+                <div class="lg:col-span-7 rounded-3xl bg-lusail-darker border border-emerald-800/60 shadow-2xl overflow-hidden">
+                    <div class="p-6 bg-emerald-950/60 border-b border-emerald-800/60 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-3">
+                            <h3 class="text-xl font-black text-white flex items-center gap-2">
+                                <i class="fa-regular fa-calendar-days text-lusail-emerald"></i>
+                                <span>حالة المواعيد اليومية</span>
+                            </h3>
+                            <div class="flex items-center gap-3 text-xs font-bold">
+                                <span class="flex items-center gap-1.5 text-emerald-300">
+                                    <span class="w-3 h-3 rounded-sm bg-emerald-500/30 border border-emerald-500"></span> متاح
+                                </span>
+                                <span class="flex items-center gap-1.5 text-rose-300">
+                                    <span class="w-3 h-3 rounded-sm bg-rose-500/30 border border-rose-500"></span> محجوز
+                                </span>
+                                <span class="flex items-center gap-1.5 text-amber-300">
+                                    <span class="w-3 h-3 rounded-sm bg-lusail-gold border border-amber-300"></span> اختيارك
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- فلاتر الملعب والتاريخ -->
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="court-type" class="block text-xs font-bold text-emerald-300 mb-1.5">اختر الملعب:</label>
+                                <select id="court-type" class="w-full px-3.5 py-2.5 rounded-xl bg-lusail-dark border border-emerald-700/70 focus:border-lusail-emerald text-white font-bold text-sm outline-none transition">
+                                    <option value="ملعب البادل (Padel)">ملعب البادل (Padel)</option>
+                                    <option value="ملعب كرة القدم الكبير">ملعب كرة القدم الكبير</option>
+                                    <option value="ملعب كرة القدم الصغير">ملعب كرة القدم الصغير</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="booking-date" class="block text-xs font-bold text-emerald-300 mb-1.5">اختر التاريخ:</label>
+                                <input type="date" id="booking-date" class="w-full px-3.5 py-2.5 rounded-xl bg-lusail-dark border border-emerald-700/70 focus:border-lusail-emerald text-white font-bold text-sm outline-none transition [color-scheme:dark]">
+                            </div>
+                        </div>
+
+                        <!-- شريط الحجوزات المسجلة لهذا اليوم -->
+                        <div id="day-booked-summary" class="hidden pt-2 border-t border-emerald-800/50">
+                            <div class="text-xs font-bold text-gray-300 mb-2 flex items-center gap-1.5">
+                                <i class="fa-solid fa-lock text-rose-400"></i>
+                                <span>الأوقات المحجوزة في هذا اليوم:</span>
+                            </div>
+                            <div id="booked-badges-container" class="flex flex-wrap gap-2"></div>
+                        </div>
+                    </div>
+
+                    <!-- شبكة الفترات الزمنية (كل 30 دقيقة) -->
+                    <div class="p-5 sm:p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs text-gray-400 font-tajawal">انقر على أي وقت <strong class="text-emerald-400">متاح</strong> لتحديد وقت البداية:</span>
+                            <span id="slots-loading-indicator" class="text-xs text-lusail-emerald font-bold flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-notch fa-spin"></i> جاري المزامنة...
+                            </span>
+                        </div>
+                        <div id="time-slots-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 max-h-[430px] overflow-y-auto pl-1 pr-1">
+                            <!-- يتم توليد الفترات الزمنية ديناميكياً عبر JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- العمود الأيسر: نموذج إتمام الحجز وتفاصيل المدة -->
+                <div class="lg:col-span-5 rounded-3xl bg-lusail-darker border border-emerald-700/50 shadow-2xl overflow-hidden">
+                    <div class="bg-gradient-to-l from-lusail-green to-emerald-950 p-6 border-b border-emerald-800/60">
+                        <h3 class="text-xl font-black text-white">تفاصيل حجزك</h3>
+                        <p class="text-emerald-200/80 text-xs font-tajawal mt-1">حدد وقت البداية والمدة وسيتم فحص التعارض تلقائياً</p>
+                    </div>
+
+                    <form id="booking-form" class="p-6 space-y-5">
+                        <!-- اختيار وقت البداية والمدة -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="start-slot-select" class="block text-xs font-bold text-gray-300 mb-1.5">
+                                    <i class="fa-regular fa-clock text-lusail-emerald ml-1"></i> وقت البداية
+                                </label>
+                                <select id="start-slot-select" required class="w-full px-3 py-3 rounded-xl bg-lusail-dark border border-emerald-800 focus:border-lusail-emerald text-white font-bold text-sm outline-none transition">
+                                    <!-- يتم ملؤها ديناميكياً -->
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="duration-slots" class="block text-xs font-bold text-gray-300 mb-1.5">
+                                    <i class="fa-regular fa-hourglass-half text-lusail-emerald ml-1"></i> مدة اللعب
+                                </label>
+                                <select id="duration-slots" required class="w-full px-3 py-3 rounded-xl bg-lusail-dark border border-emerald-800 focus:border-lusail-emerald text-white font-bold text-sm outline-none transition">
+                                    <option value="2">ساعة واحدة (60 د)</option>
+                                    <option value="3" selected>ساعة ونصف (90 د)</option>
+                                    <option value="4">ساعتان (120 د)</option>
+                                    <option value="5">ساعتان ونصف (150 د)</option>
+                                    <option value="6">3 ساعات (180 د)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- بطاقة معاينة نطاق الحجز والفحص الفوري للتعارض -->
+                        <div id="range-preview-box" class="p-4 rounded-2xl bg-emerald-950/60 border border-emerald-700/60 space-y-1.5">
+                            <div class="flex items-center justify-between text-xs text-emerald-300 font-bold">
+                                <span>نطاق الحجز المحدد:</span>
+                                <span id="preview-court-badge" class="px-2 py-0.5 rounded bg-emerald-900 text-white">ملعب البادل</span>
+                            </div>
+                            <div id="preview-time-range" class="text-base sm:text-lg font-black text-white">
+                                من 8:30 م إلى 10:00 م
+                            </div>
+                            <div id="conflict-warning" class="hidden text-xs font-bold text-rose-400 flex items-center gap-1.5 pt-1">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <span>عذراً! هذا النطاق يتعارض مع حجز قائم، يرجى اختيار وقت أو مدة أخرى.</span>
+                            </div>
+                            <div id="available-ok-msg" class="text-xs font-bold text-lusail-emerald flex items-center gap-1.5 pt-1">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>الوقت متاح بالكامل وجاهز للتأكيد!</span>
+                            </div>
+                        </div>
+
+                        <!-- اسم العميل -->
+                        <div>
+                            <label for="client-name" class="block text-xs font-bold text-gray-300 mb-1.5">
+                                <i class="fa-regular fa-user text-lusail-emerald ml-1"></i> الاسم الكريم / اسم الفريق
+                            </label>
+                            <input type="text" id="client-name" placeholder="مثال: أحمد العتيبي" required class="w-full px-4 py-3 rounded-xl bg-lusail-dark border border-emerald-800 focus:border-lusail-emerald text-white placeholder-gray-500 font-tajawal text-sm outline-none transition">
+                        </div>
+
+                        <!-- رقم الجوال -->
+                        <div>
+                            <label for="client-phone" class="block text-xs font-bold text-gray-300 mb-1.5">
+                                <i class="fa-solid fa-mobile-screen-button text-lusail-emerald ml-1"></i> رقم الجوال للتواصل
+                            </label>
+                            <input type="tel" id="client-phone" placeholder="05XXXXXXXX" required dir="ltr" class="w-full px-4 py-3 rounded-xl bg-lusail-dark border border-emerald-800 focus:border-lusail-emerald text-white placeholder-gray-500 text-right font-bold text-sm outline-none transition">
+                        </div>
+
+                        <!-- ملاحظات إضافية -->
+                        <div>
+                            <label for="notes" class="block text-xs font-bold text-gray-300 mb-1.5">
+                                <i class="fa-regular fa-comment-dots text-lusail-emerald ml-1"></i> ملاحظات إضافية (اختياري)
+                            </label>
+                            <input type="text" id="notes" placeholder="مثال: نحتاج صدريات أو مضارب بادل..." class="w-full px-4 py-2.5 rounded-xl bg-lusail-dark border border-emerald-800 focus:border-lusail-emerald text-white placeholder-gray-500 font-tajawal text-sm outline-none transition">
+                        </div>
+
+                        <!-- زر التأكيد -->
+                        <button type="submit" id="submit-booking-btn" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-l from-lusail-emerald to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed text-lusail-darker font-black text-base shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-2.5 transition-all cursor-pointer">
+                            <i class="fa-solid fa-check-double text-lg"></i>
+                            <span>تأكيد وحجز الموعد الآن</span>
+                        </button>
+
+                        <!-- إيصال الحجز الرقمي (يظهر بعد نجاح الحجز) -->
+                        <div id="booking-receipt" class="hidden p-5 rounded-2xl bg-gradient-to-br from-emerald-950 to-lusail-dark border-2 border-lusail-emerald space-y-3 shadow-lg">
+                            <div class="flex items-center justify-between border-b border-emerald-800/60 pb-2.5">
+                                <div class="flex items-center gap-2 font-black text-lusail-emerald text-base">
+                                    <i class="fa-solid fa-ticket text-lg"></i>
+                                    <span>تم تثبيت حجزك بنجاح!</span>
+                                </div>
+                                <span id="receipt-ref" class="text-xs font-mono font-bold px-2.5 py-1 rounded bg-emerald-900 text-emerald-200">#LUS-0000</span>
+                            </div>
+                            <div id="receipt-details" class="text-xs sm:text-sm font-tajawal text-gray-200 space-y-1 leading-relaxed"></div>
+                            <div class="pt-2 flex flex-col gap-2">
+                                <a id="receipt-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                                    <span>إرسال نسخة الإيصال لإدارة الملاعب (واتساب)</span>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- نافذة لوحة تحكم المالك (Owner Dashboard Modal) -->
+    <div id="owner-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div class="bg-lusail-darker border border-emerald-700/60 rounded-3xl w-full max-w-5xl shadow-2xl overflow-hidden my-auto">
+            <!-- رأس النافذة -->
+            <div class="bg-gradient-to-l from-emerald-950 to-lusail-dark px-6 py-4 border-b border-emerald-800/60 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 text-lusail-gold flex items-center justify-center">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-black text-white">لوحة تحكم المالك — إدارة الحجوزات</h3>
+                        <p class="text-xs text-gray-400 font-tajawal">مزامنة فورية لجميع الملاعب والتقويم اليومي</p>
+                    </div>
+                </div>
+                <button onclick="closeOwnerModal()" aria-label="إغلاق" class="w-9 h-9 rounded-xl bg-emerald-900/50 hover:bg-rose-600/80 text-gray-300 hover:text-white flex items-center justify-center transition cursor-pointer">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- شاشة إدخال الرمز السري للمالك -->
+            <div id="owner-login-screen" class="p-8 sm:p-12 text-center max-w-md mx-auto space-y-5">
+                <div class="w-16 h-16 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-lusail-gold flex items-center justify-center text-3xl mx-auto">
+                    <i class="fa-solid fa-key"></i>
+                </div>
+                <div>
+                    <h4 class="text-xl font-black text-white">تسجيل دخول الإدارة</h4>
+                    <p class="text-xs text-gray-400 font-tajawal mt-1">أدخل رمز المرور الخاص بمالك ملاعب لوسيل للوصول إلى سجل الحجوزات الكامل</p>
+                </div>
+                <form id="owner-login-form" class="space-y-4">
+                    <input type="password" id="owner-pin-input" maxlength="6" placeholder="••••" required class="w-full text-center tracking-[0.5em] text-2xl font-black py-3.5 rounded-2xl bg-lusail-dark border border-emerald-700 focus:border-lusail-gold text-white outline-none">
+                    <p id="owner-pin-error" class="hidden text-xs font-bold text-rose-400">رمز المرور غير صحيح! (الرمز الافتراضي للتجربة: 1234)</p>
+                    <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-l from-lusail-gold to-amber-500 text-lusail-darker font-black text-sm shadow-lg hover:brightness-110 transition cursor-pointer">
+                        دخول إلى لوحة التحكم
+                    </button>
+                    <p class="text-[11px] text-gray-500 font-tajawal">رمز الدخول الافتراضي للمعاينة: <span class="text-amber-400 font-bold">1234</span></p>
+                </form>
+            </div>
+
+            <!-- محتوى لوحة تحكم المالك بعد تسجيل الدخول -->
+            <div id="owner-dashboard-content" class="hidden p-5 sm:p-6 space-y-6 max-h-[80vh] overflow-y-auto">
+                <!-- إحصائيات سريعة لليوم المحدد -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="p-4 rounded-2xl bg-lusail-dark border border-emerald-800/50">
+                        <div class="text-xs text-gray-400 font-tajawal">إجمالي حجوزات اليوم</div>
+                        <div id="stat-total" class="text-2xl font-black text-white mt-1">0</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-lusail-dark border border-amber-600/40">
+                        <div class="text-xs text-amber-300/80 font-tajawal">حجوزات البادل</div>
+                        <div id="stat-padel" class="text-2xl font-black text-lusail-gold mt-1">0</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-lusail-dark border border-emerald-600/40">
+                        <div class="text-xs text-emerald-300/80 font-tajawal">الملعب الكبير</div>
+                        <div id="stat-large" class="text-2xl font-black text-lusail-emerald mt-1">0</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-lusail-dark border border-teal-600/40">
+                        <div class="text-xs text-teal-300/80 font-tajawal">الملعب الصغير</div>
+                        <div id="stat-small" class="text-2xl font-black text-teal-400 mt-1">0</div>
+                    </div>
+                </div>
+
+                <!-- شريط الفلترة والإضافة اليدوية للمالك -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-emerald-950/50 border border-emerald-800/60">
+                    <div class="flex flex-wrap items-center gap-3">
+                        <div>
+                            <label for="owner-filter-date" class="block text-[11px] text-gray-400 mb-1">تاريخ العرض:</label>
+                            <input type="date" id="owner-filter-date" class="px-3 py-2 rounded-xl bg-lusail-dark border border-emerald-700 text-white text-xs font-bold outline-none [color-scheme:dark]">
+                        </div>
+                        <div>
+                            <label for="owner-filter-court" class="block text-[11px] text-gray-400 mb-1">تصفية حسب الملعب:</label>
+                            <select id="owner-filter-court" class="px-3 py-2 rounded-xl bg-lusail-dark border border-emerald-700 text-white text-xs font-bold outline-none">
+                                <option value="ALL">جميع الملاعب</option>
+                                <option value="ملعب البادل (Padel)">ملعب البادل (Padel)</option>
+                                <option value="ملعب كرة القدم الكبير">ملعب كرة القدم الكبير</option>
+                                <option value="ملعب كرة القدم الصغير">ملعب كرة القدم الصغير</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button onclick="toggleOwnerManualForm()" class="px-4 py-2.5 rounded-xl bg-lusail-emerald hover:bg-emerald-400 text-lusail-darker font-extrabold text-xs flex items-center justify-center gap-2 transition cursor-pointer shrink-0">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>إضافة حجز يدوي (هاتفي / حضوري)</span>
+                    </button>
+                </div>
+
+                <!-- نموذج إضافة حجز يدوي سريع من قبل المالك -->
+                <form id="owner-manual-form" class="hidden p-5 rounded-2xl bg-lusail-dark border border-lusail-emerald/60 space-y-4">
+                    <div class="flex items-center justify-between border-b border-emerald-900 pb-2">
+                        <h5 class="font-bold text-sm text-lusail-emerald">تسجيل حجز جديد مباشرة في النظام</h5>
+                        <button type="button" onclick="toggleOwnerManualForm()" class="text-xs text-gray-400 hover:text-white">إلغاء</button>
+                    </div>
+                    <div class="grid sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">الملعب</label>
+                            <select id="manual-court" class="w-full px-3 py-2 rounded-xl bg-lusail-darker border border-emerald-800 text-white text-xs font-bold">
+                                <option value="ملعب البادل (Padel)">ملعب البادل (Padel)</option>
+                                <option value="ملعب كرة القدم الكبير">ملعب كرة القدم الكبير</option>
+                                <option value="ملعب كرة القدم الصغير">ملعب كرة القدم الصغير</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">التاريخ</label>
+                            <input type="date" id="manual-date" required class="w-full px-3 py-2 rounded-xl bg-lusail-darker border border-emerald-800 text-white text-xs font-bold [color-scheme:dark]">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-xs text-gray-300 mb-1">البداية</label>
+                                <select id="manual-start" class="w-full px-2 py-2 rounded-xl bg-lusail-darker border border-emerald-800 text-white text-xs font-bold"></select>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-300 mb-1">المدة</label>
+                                <select id="manual-duration" class="w-full px-2 py-2 rounded-xl bg-lusail-darker border border-emerald-800 text-white text-xs font-bold">
+                                    <option value="2">ساعة</option>
+                                    <option value="3" selected>ساعة ونصف</option>
+                                    <option value="4">ساعتان</option>
+                                    <option value="6">3 ساعات</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">اسم المستأجر</label>
+                            <input type="text" id="manual-name" placeholder="اسم العميل" required class="w-full px-3 py-2 rounded-xl bg-lusail-darker border border-emerald-800 text-white text-xs">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">رقم الجوال</label>
+                            <input type="tel" id="manual-phone" placeholder="05XXXXXXXX" required dir="ltr" class="w-full px-3 py-2 rounded-xl bg-lusail-darker border border-emerald-800 text-white text-xs text-right">
+                        </div>
+                        <div class="flex items-end">
+                            <button type="submit" class="w-full py-2 px-4 rounded-xl bg-lusail-emerald text-lusail-darker font-black text-xs hover:bg-emerald-400 transition cursor-pointer">
+                                حفظ وتثبيت الحجز
+                            </button>
+                        </div>
+                    </div>
+                    <p id="manual-error-msg" class="hidden text-xs font-bold text-rose-400"></p>
+                </form>
+
+                <!-- جدول / بطاقات الحجوزات للمالك -->
+                <div class="space-y-3">
+                    <h4 class="text-sm font-bold text-gray-300 flex items-center justify-between">
+                        <span>قائمة الحجوزات التفصيلية:</span>
+                        <span id="owner-bookings-count" class="text-xs text-lusail-emerald">0 حجز</span>
+                    </h4>
+                    <div id="owner-bookings-list" class="space-y-3">
+                        <!-- يتم عرض حجوزات المالك هنا لحظياً -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم آراء الزوار وتقييماتهم (Reviews Section) -->
+    <section id="reviews" class="py-20 bg-lusail-dark/50 border-t border-emerald-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-lusail-emerald font-extrabold text-sm">تجارب حقيقية من أرض الملعب</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-white mt-1">آراء اللاعبين والزوار</h2>
+                </div>
+                <div class="flex items-center gap-4 px-5 py-3 rounded-2xl bg-lusail-darker border border-emerald-800/60">
+                    <div class="text-3xl font-black text-lusail-gold">4.1<span class="text-base text-gray-400 font-normal">/5</span></div>
+                    <div>
+                        <div class="flex text-lusail-gold text-sm gap-0.5">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <div class="text-xs text-gray-400 font-tajawal mt-0.5">بناءً على تقييمات الزوار على خرائط جوجل</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- تقييم 1 -->
+                <div class="p-6 rounded-2xl bg-lusail-darker border border-emerald-900/60 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex text-lusail-gold text-xs gap-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <i class="fa-solid fa-quote-left text-emerald-800 text-2xl"></i>
+                        </div>
+                        <p class="text-gray-300 font-tajawal text-sm leading-relaxed mb-6">
+                            "ما شاء الله ملاعب نظيفة ومرتبة جداً، يوجد ملعب كبير وملعب صغير بالإضافة لملعب بادل. الإدارة متعاونة وسريعة في التجاوب، والمواقف الخارجية واسعة."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-emerald-900/40">
+                        <div class="w-9 h-9 rounded-full bg-emerald-800 text-emerald-200 font-bold flex items-center justify-center text-sm">م</div>
+                        <div>
+                            <div class="text-sm font-bold text-white">محمد الحسن</div>
+                            <div class="text-xs text-gray-500">زائر من الأحساء</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تقييم 2 -->
+                <div class="p-6 rounded-2xl bg-lusail-darker border border-emerald-900/60 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex text-lusail-gold text-xs gap-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <i class="fa-solid fa-quote-left text-emerald-800 text-2xl"></i>
+                        </div>
+                        <p class="text-gray-300 font-tajawal text-sm leading-relaxed mb-6">
+                            "مكان ممتاز لإقامة الدورات والبطولات الشبابية في الطرف. الأرضية ممتازة والإضاءة قوية بالليل، وتوفر دورات مياه متعددة يخدم اللاعبين بشكل كبير."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-emerald-900/40">
+                        <div class="w-9 h-9 rounded-full bg-amber-800/60 text-amber-200 font-bold flex items-center justify-center text-sm">ع</div>
+                        <div>
+                            <div class="text-sm font-bold text-white">عبدالله السالم</div>
+                            <div class="text-xs text-gray-500">منظم بطولات</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تقييم 3 -->
+                <div class="p-6 rounded-2xl bg-lusail-darker border border-emerald-900/60 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex text-lusail-gold text-xs gap-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                            </div>
+                            <i class="fa-solid fa-quote-left text-emerald-800 text-2xl"></i>
+                        </div>
+                        <p class="text-gray-300 font-tajawal text-sm leading-relaxed mb-6">
+                            "تجربة جميلة في ملعب البادل والملعب الصغير، المكان في تطور مستمر وصيانة دائمة، وأفضل ميزة إنهم شغالين 24 ساعة بأي وقت نقدر نحجز ونلعب."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-emerald-900/40">
+                        <div class="w-9 h-9 rounded-full bg-teal-800/60 text-teal-200 font-bold flex items-center justify-center text-sm">خ</div>
+                        <div>
+                            <div class="text-sm font-bold text-white">خالد الدوسري</div>
+                            <div class="text-xs text-gray-500">لاعب بادل وكرة قدم</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الموقع وساعات العمل (Location & Hours Section) -->
+    <section id="location" class="py-20 border-t border-emerald-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rounded-3xl bg-lusail-dark border border-emerald-800/50 p-6 sm:p-10 grid lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="inline-block px-3.5 py-1 rounded-full bg-emerald-950 border border-emerald-700 text-lusail-emerald text-xs font-bold">تفضل بزيارتنا</span>
+                    <h2 class="text-3xl font-black text-white">الموقع وساعات العمل</h2>
+                    <p class="text-gray-300 font-tajawal leading-relaxed">
+                        نرحب بكم في أي وقت من اليوم أو الليل. موقعنا سهل الوصول في الطرف بالأحساء مع توفر مواقف سيارات واسعة أمام الملاعب مباشرة.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-950 border border-emerald-800 text-lusail-emerald flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-map-location-dot text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">العنوان الوطني</h4>
+                                <p class="text-gray-400 font-tajawal text-sm mt-0.5">8227 علي ابن ابي طالب، الطرف، الفضول 36287، الأحساء، المملكة العربية السعودية</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-950 border border-emerald-800 text-lusail-gold flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-regular fa-clock text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">ساعات العمل</h4>
+                                <p class="text-emerald-300 font-bold text-sm mt-0.5">مفتوح 24 ساعة — طوال أيام الأسبوع (السبت إلى الجمعة)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-950 border border-emerald-800 text-lusail-emerald flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-phone-volume text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">رقم الحجوزات والاستفسار</h4>
+                                <p class="text-gray-300 font-bold text-sm mt-0.5" dir="ltr">054 230 0780</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <a href="https://maps.app.goo.gl/EtPJjA6RfQjNexHG9" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl bg-white hover:bg-gray-100 text-lusail-darker font-extrabold text-sm flex items-center gap-2.5 shadow-lg transition">
+                            <i class="fa-solid fa-diamond-turn-right text-emerald-600 text-lg"></i>
+                            <span>فتح الاتجاهات في خرائط جوجل</span>
+                        </a>
+                        <button onclick="copyAddress()" class="px-5 py-3.5 rounded-xl bg-emerald-950 hover:bg-emerald-900 border border-emerald-700 text-emerald-200 font-bold text-sm flex items-center gap-2 transition cursor-pointer">
+                            <i class="fa-regular fa-copy"></i>
+                            <span id="copy-btn-text">نسخ العنوان</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- خريطة تفاعلية مصممة للعرض -->
+                <div class="lg:col-span-6">
+                    <div class="rounded-2xl overflow-hidden border border-emerald-700/50 bg-lusail-darker h-80 sm:h-96 relative shadow-inner">
+                        <iframe 
+                            title="موقع ملاعب لوسيل في الطرف الأحساء"
+                            src="https://www.google.com/maps?q=8227+%D8%B9%D9%84%D9%8A+%D8%A7%D8%A8%D9%86+%D8%A7%D8%A8%D9%8A+%D8%B7%D8%A7%D9%84%D8%A8%D8%8C+%D8%A7%D9%84%D8%B7%D8%B1%D9%81%D8%8C+%D8%A7%D9%84%D9%81%D8%B6%D9%88%D9%84+36287&output=embed" 
+                            class="w-full h-full border-0 filter contrast-105" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل (Footer) -->
+    <footer class="bg-lusail-darker border-t border-emerald-900/60 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pb-8 border-b border-emerald-900/40">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-lusail-emerald flex items-center justify-center text-lusail-darker font-black">
+                        <i class="fa-solid fa-futbol text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-black text-white">ملاعب لوسيل</span>
+                        <span class="block text-xs text-gray-400 font-tajawal">الطرف، الأحساء • مفتوح 24 ساعة</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-6 text-sm font-bold text-gray-400">
+                    <a href="#courts" class="hover:text-lusail-emerald transition">الملاعب</a>
+                    <a href="#facilities" class="hover:text-lusail-emerald transition">المرافق</a>
+                    <a href="#booking" class="hover:text-lusail-emerald transition">احجز الآن</a>
+                    <a href="#reviews" class="hover:text-lusail-emerald transition">التقييمات</a>
+                    <a href="#location" class="hover:text-lusail-emerald transition">الموقع</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="https://wa.me/966542300780" target="_blank" rel="noopener noreferrer" aria-label="واتساب" class="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-800 hover:border-lusail-emerald text-lusail-emerald flex items-center justify-center transition">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                    </a>
+                    <a href="tel:0542300780" aria-label="اتصال" class="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-800 hover:border-lusail-emerald text-emerald-300 flex items-center justify-center transition">
+                        <i class="fa-solid fa-phone text-sm"></i>
+                    </a>
+                    <a href="https://maps.app.goo.gl/EtPJjA6RfQjNexHG9" target="_blank" rel="noopener noreferrer" aria-label="خرائط جوجل" class="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-800 hover:border-lusail-gold text-lusail-gold flex items-center justify-center transition">
+                        <i class="fa-solid fa-location-dot text-base"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500 font-tajawal">
+                <p>© <span id="current-year"></span> ملاعب لوسيل - الأحساء. جميع الحقوق محفوظة.</p>
+                <p>8227 علي ابن ابي طالب، الطرف، الفضول 36287</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر واتساب عائم للجوال وسطح المكتب -->
+    <a href="https://wa.me/966542300780" target="_blank" rel="noopener noreferrer" aria-label="تواصل معنا عبر واتساب" class="fixed bottom-5 left-5 z-40 w-14 h-14 rounded-full bg-lusail-emerald hover:bg-emerald-400 text-lusail-darker shadow-2xl shadow-emerald-500/40 flex items-center justify-center text-3xl transition-transform hover:scale-110">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- نظام الحجز الفوري متعدد المستخدمين (Firebase Firestore + منطق الجدول الزمني) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // إعدادات Firebase من البيئة المحيطة
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'lusail-stadiums-alahsa';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+
+        let db = null;
+        let auth = null;
+        let currentUser = null;
+        let allBookings = []; // جميع الحجوزات المتزامنة في الوقت الفعلي
+        let isOwnerAuthenticated = false;
+
+        // توليد الفترات الزمنية الـ 48 على مدار 24 ساعة (كل 30 دقيقة: من 0 إلى 47)
+        // مثال: index 17 = 08:30 ص، index 41 = 08:30 م (20:30)، index 44 = 10:00 م (22:00)
+        function formatSlotIndex(index) {
+            const totalMinutes = (index % 48) * 30;
+            const hours24 = Math.floor(totalMinutes / 60);
+            const minutes = totalMinutes % 60;
+            const period = hours24 < 12 ? 'ص' : 'م';
+            let hours12 = hours24 % 12;
+            if (hours12 === 0) hours12 = 12;
+            const minStr = minutes === 0 ? '00' : '30';
+            return `${hours12}:${minStr} ${period}`;
+        }
+
+        function formatRange(startSlot, durationSlots) {
+            const endSlot = startSlot + durationSlots;
+            const endLabel = endSlot === 48 ? '12:00 ص (نهاية اليوم)' : formatSlotIndex(endSlot);
+            return `من ${formatSlotIndex(startSlot)} إلى ${endLabel}`;
+        }
+
+        function formatDurationLabel(slots) {
+            const hours = slots * 0.5;
+            if (hours === 1) return 'ساعة واحدة';
+            if (hours === 1.5) return 'ساعة ونصف';
+            if (hours === 2) return 'ساعتان';
+            if (hours === 2.5) return 'ساعتان ونصف';
+            return `${hours} ساعات`;
+        }
+
+        // تحديث السنة الحالية وتواريخ الإدخال الافتراضية
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        const todayStr = new Date().toISOString().split('T')[0];
+        const dateInput = document.getElementById('booking-date');
+        const ownerFilterDate = document.getElementById('owner-filter-date');
+        const manualDate = document.getElementById('manual-date');
+
+        dateInput.value = todayStr;
+        dateInput.min = todayStr;
+        ownerFilterDate.value = todayStr;
+        manualDate.value = todayStr;
+
+        // تعبئة قوائم اختيار وقت البداية (0 إلى 46)
+        const startSlotSelect = document.getElementById('start-slot-select');
+        const manualStartSelect = document.getElementById('manual-start');
+        for (let i = 0; i < 48; i++) {
+            const opt1 = document.createElement('option');
+            opt1.value = i;
+            opt1.textContent = formatSlotIndex(i);
+            if (i === 41) opt1.selected = true; // 8:30 م افتراضياً كمثال
+            startSlotSelect.appendChild(opt1);
+
+            const opt2 = document.createElement('option');
+            opt2.value = i;
+            opt2.textContent = formatSlotIndex(i);
+            if (i === 41) opt2.selected = true;
+            manualStartSelect.appendChild(opt2);
+        }
+
+        // التحكم في قائمة الجوال
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // دوال عامة متاحة للأزرار في HTML
+        window.selectCourtAndScroll = function(courtName) {
+            const courtSelect = document.getElementById('court-type');
+            courtSelect.value = courtName;
+            renderCustomerSchedule();
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        window.openOwnerModal = function() {
+            document.getElementById('owner-modal').classList.remove('hidden');
+            if (isOwnerAuthenticated) {
+                document.getElementById('owner-login-screen').classList.add('hidden');
+                document.getElementById('owner-dashboard-content').classList.remove('hidden');
+                renderOwnerDashboard();
+            }
+        };
+
+        window.closeOwnerModal = function() {
+            document.getElementById('owner-modal').classList.add('hidden');
+        };
+
+        window.toggleOwnerManualForm = function() {
+            const form = document.getElementById('owner-manual-form');
+            form.classList.toggle('hidden');
+            document.getElementById('manual-error-msg').classList.add('hidden');
+        };
+
+        window.copyAddress = function() {
+            const addressText = "ملاعب لوسيل - 8227 علي ابن ابي طالب، الطرف، الفضول 36287، الأحساء";
+            const tempInput = document.createElement('textarea');
+            tempInput.value = addressText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                const btnText = document.getElementById('copy-btn-text');
+                btnText.textContent = "تم نسخ العنوان!";
+                setTimeout(() => { btnText.textContent = "نسخ العنوان"; }, 2500);
+            } catch (err) {
+                console.error('فشل النسخ', err);
+            }
+            document.body.removeChild(tempInput);
+        };
+
+        // التحقق من وجود تعارض بين الحجز المطلوب والحجوزات المسجلة لنفس الملعب ونفس التاريخ
+        function checkConflict(court, date, startSlot, durationSlots) {
+            const endSlot = startSlot + durationSlots;
+            if (endSlot > 48) {
+                return { conflict: true, reason: 'مدة اللعب تتجاوز نهاية اليوم (12:00 منتصف الليل). يرجى تقليل المدة أو حجز اليوم التالي.' };
+            }
+            const courtDayBookings = allBookings.filter(b => b.court === court && b.date === date);
+            for (const b of courtDayBookings) {
+                const bStart = Number(b.startSlot);
+                const bEnd = bStart + Number(b.durationSlots);
+                // شرط تداخل الفترات الزمنية: [startSlot, endSlot) مع [bStart, bEnd)
+                if (startSlot < bEnd && endSlot > bStart) {
+                    return {
+                        conflict: true,
+                        reason: `يتعارض هذا الموعد مع حجز قائم (${formatRange(bStart, Number(b.durationSlots))}).`
+                    };
+                }
+            }
+            return { conflict: false };
+        }
+
+        // تحديث واجهة الجدول الزمني للمشتري
+        function renderCustomerSchedule() {
+            const selectedCourt = document.getElementById('court-type').value;
+            const selectedDate = document.getElementById('booking-date').value;
+            const startSlot = Number(document.getElementById('start-slot-select').value);
+            const durationSlots = Number(document.getElementById('duration-slots').value);
+
+            // الحجوزات الخاصة بهذا الملعب وهذا التاريخ
+            const dayBookings = allBookings
+                .filter(b => b.court === selectedCourt && b.date === selectedDate)
+                .sort((a, b) => Number(a.startSlot) - Number(b.startSlot));
+
+            // عرض شارات الفترات المحجوزة بوضوح أعلى الشبكة
+            const summaryContainer = document.getElementById('day-booked-summary');
+            const badgesContainer = document.getElementById('booked-badges-container');
+            badgesContainer.innerHTML = '';
+
+            if (dayBookings.length > 0) {
+                summaryContainer.classList.remove('hidden');
+                dayBookings.forEach(b => {
+                    const badge = document.createElement('span');
+                    badge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-rose-950/90 border border-rose-600/60 text-rose-200 text-xs font-bold';
+                    badge.innerHTML = `<i class="fa-solid fa-ban text-rose-400 text-[10px]"></i> محجوز: ${formatRange(Number(b.startSlot), Number(b.durationSlots))}`;
+                    badgesContainer.appendChild(badge);
+                });
+            } else {
+                summaryContainer.classList.add('hidden');
+            }
+
+            // بناء شبكة الـ 48 فترة (كل 30 دقيقة)
+            const grid = document.getElementById('time-slots-grid');
+            grid.innerHTML = '';
+
+            for (let i = 0; i < 48; i++) {
+                // هل هذه الفترة (i) محجوزة ضمن أي حجز؟
+                const bookedItem = dayBookings.find(b => {
+                    const s = Number(b.startSlot);
+                    const e = s + Number(b.durationSlots);
+                    return i >= s && i < e;
+                });
+
+                // هل هذه الفترة (i) ضمن نطاق اختيار المشتري الحالي؟
+                const isSelectedRange = i >= startSlot && i < (startSlot + durationSlots);
+
+                const slotBtn = document.createElement('button');
+                slotBtn.type = 'button';
+
+                if (bookedItem) {
+                    slotBtn.disabled = true;
+                    slotBtn.className = 'p-2.5 rounded-xl bg-rose-950/50 border border-rose-800/60 text-rose-300/80 text-right flex flex-col justify-between cursor-not-allowed opacity-85';
+                    slotBtn.innerHTML = `
+                        <div class="flex items-center justify-between w-full">
+                            <span class="font-bold text-xs">${formatSlotIndex(i)}</span>
+                            <i class="fa-solid fa-lock text-[10px] text-rose-400"></i>
+                        </div>
+                        <span class="text-[10px] text-rose-400 font-bold mt-1">محجوز</span>
+                    `;
+                } else if (isSelectedRange) {
+                    slotBtn.className = 'p-2.5 rounded-xl bg-lusail-gold text-lusail-darker border-2 border-amber-200 text-right flex flex-col justify-between shadow-md transform scale-[1.02] transition cursor-pointer';
+                    slotBtn.innerHTML = `
+                        <div class="flex items-center justify-between w-full">
+                            <span class="font-black text-xs">${formatSlotIndex(i)}</span>
+                            <i class="fa-solid fa-check text-[10px]"></i>
+                        </div>
+                        <span class="text-[10px] font-extrabold mt-1">محدد لك</span>
+                    `;
+                    slotBtn.onclick = () => {
+                        document.getElementById('start-slot-select').value = i;
+                        renderCustomerSchedule();
+                    };
+                } else {
+                    slotBtn.className = 'p-2.5 rounded-xl bg-emerald-950/40 hover:bg-emerald-900/70 border border-emerald-800/60 hover:border-lusail-emerald text-gray-200 text-right flex flex-col justify-between transition cursor-pointer';
+                    slotBtn.innerHTML = `
+                        <div class="flex items-center justify-between w-full">
+                            <span class="font-bold text-xs">${formatSlotIndex(i)}</span>
+                            <span class="w-2 h-2 rounded-full bg-lusail-emerald"></span>
+                        </div>
+                        <span class="text-[10px] text-emerald-400 font-bold mt-1">متاح</span>
+                    `;
+                    slotBtn.onclick = () => {
+                        document.getElementById('start-slot-select').value = i;
+                        renderCustomerSchedule();
+                    };
+                }
+
+                grid.appendChild(slotBtn);
+            }
+
+            // تحديث بطاقة معاينة النطاق وفحص التعارض
+            document.getElementById('preview-court-badge').textContent = selectedCourt;
+            document.getElementById('preview-time-range').textContent = `${formatRange(startSlot, durationSlots)} (${formatDurationLabel(durationSlots)})`;
+
+            const conflictCheck = checkConflict(selectedCourt, selectedDate, startSlot, durationSlots);
+            const warningEl = document.getElementById('conflict-warning');
+            const okEl = document.getElementById('available-ok-msg');
+            const submitBtn = document.getElementById('submit-booking-btn');
+
+            if (conflictCheck.conflict) {
+                warningEl.querySelector('span').textContent = conflictCheck.reason;
+                warningEl.classList.remove('hidden');
+                okEl.classList.add('hidden');
+                submitBtn.disabled = true;
+            } else {
+                warningEl.classList.add('hidden');
+                okEl.classList.remove('hidden');
+                submitBtn.disabled = false;
+            }
+        }
+
+        // تحديث لوحة تحكم المالك
+        function renderOwnerDashboard() {
+            if (!isOwnerAuthenticated) return;
+
+            const filterDate = document.getElementById('owner-filter-date').value;
+            const filterCourt = document.getElementById('owner-filter-court').value;
+
+            // إحصائيات اليوم المحدد لجميع الملاعب
+            const dateBookings = allBookings.filter(b => b.date === filterDate);
+            document.getElementById('stat-total').textContent = dateBookings.length;
+            document.getElementById('stat-padel').textContent = dateBookings.filter(b => b.court.includes('البادل')).length;
+            document.getElementById('stat-large').textContent = dateBookings.filter(b => b.court.includes('الكبير')).length;
+            document.getElementById('stat-small').textContent = dateBookings.filter(b => b.court.includes('الصغير')).length;
+
+            // تصفية القائمة حسب الملعب المختار
+            const filtered = dateBookings
+                .filter(b => filterCourt === 'ALL' || b.court === filterCourt)
+                .sort((a, b) => Number(a.startSlot) - Number(b.startSlot));
+
+            document.getElementById('owner-bookings-count').textContent = `${filtered.length} حجز`;
+
+            const listContainer = document.getElementById('owner-bookings-list');
+            listContainer.innerHTML = '';
+
+            if (filtered.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="p-8 rounded-2xl bg-lusail-dark/60 border border-emerald-900/50 text-center text-gray-400 font-tajawal text-sm">
+                        لا توجد حجوزات مسجلة لهذا التاريخ والملعب حتى الآن.
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(booking => {
+                const startS = Number(booking.startSlot);
+                const durS = Number(booking.durationSlots);
+                const timeRangeStr = formatRange(startS, durS);
+                const cleanPhone = (booking.phone || '').replace(/\D/g, '');
+                const waPhone = cleanPhone.startsWith('05') ? '966' + cleanPhone.substring(1) : cleanPhone;
+
+                const card = document.createElement('div');
+                card.className = 'p-4 sm:p-5 rounded-2xl bg-lusail-dark border border-emerald-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4';
+                card.innerHTML = `
+                    <div class="space-y-1.5">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/40 text-lusail-emerald text-xs font-black">
+                                ${booking.court}
+                            </span>
+                            <span class="px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-500/40 text-lusail-goldlight text-xs font-extrabold">
+                                <i class="fa-regular fa-clock ml-1"></i> ${timeRangeStr}
+                            </span>
+                            <span class="text-xs text-gray-400 font-mono">#${booking.refCode || booking.id.slice(0, 6).toUpperCase()}</span>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-4 pt-1 text-sm">
+                            <span class="font-bold text-white"><i class="fa-regular fa-user text-emerald-400 ml-1"></i> ${booking.customerName}</span>
+                            <span class="font-bold text-gray-300" dir="ltr"><i class="fa-solid fa-phone text-emerald-400 mr-1"></i> ${booking.phone}</span>
+                        </div>
+                        ${booking.notes ? `<p class="text-xs text-gray-400 font-tajawal"><i class="fa-regular fa-note-sticky ml-1"></i> ملاحظات: ${booking.notes}</p>` : ''}
+                    </div>
+
+                    <div class="flex items-center gap-2 shrink-0">
+                        <a href="tel:${booking.phone}" class="px-3 py-2 rounded-xl bg-emerald-950 hover:bg-emerald-900 border border-emerald-700 text-emerald-300 text-xs font-bold flex items-center gap-1.5 transition">
+                            <i class="fa-solid fa-phone"></i> اتصال
+                        </a>
+                        <a href="https://wa.me/${waPhone}" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/40 border border-emerald-500/40 text-lusail-emerald text-xs font-bold flex items-center gap-1.5 transition">
+                            <i class="fa-brands fa-whatsapp"></i> واتساب
+                        </a>
+                        <button data-delete-id="${booking.id}" class="delete-booking-btn px-3 py-2 rounded-xl bg-rose-950/80 hover:bg-rose-600 border border-rose-700/60 text-rose-200 hover:text-white text-xs font-bold flex items-center gap-1.5 transition cursor-pointer">
+                            <i class="fa-solid fa-trash-can"></i> إلغاء
+                        </button>
+                    </div>
+                `;
+                listContainer.appendChild(card);
+            });
+
+            // ربط أزرار إلغاء الحجز للمالك (بدون استخدام confirm المتصفح)
+            listContainer.querySelectorAll('.delete-booking-btn').forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    const docId = this.getAttribute('data-delete-id');
+                    if (this.dataset.confirmStep !== 'true') {
+                        this.dataset.confirmStep = 'true';
+                        this.innerHTML = `<i class="fa-solid fa-check"></i> تأكيد الإلغاء؟`;
+                        this.classList.add('bg-rose-600', 'text-white');
+                        setTimeout(() => {
+                            if (this && this.dataset) {
+                                this.dataset.confirmStep = 'false';
+                                this.innerHTML = `<i class="fa-solid fa-trash-can"></i> إلغاء`;
+                                this.classList.remove('bg-rose-600', 'text-white');
+                            }
+                        }, 3500);
+                        return;
+                    }
+                    await deleteBookingFromDB(docId);
+                });
+            });
+        }
+
+        // حفظ حجز جديد في Firestore
+        async function saveBookingToDB(bookingData) {
+            if (!db || !currentUser) return null;
+            const bookingsCol = collection(db, 'artifacts', appId, 'public', 'data', 'bookings');
+            return await addDoc(bookingsCol, {
+                ...bookingData,
+                createdAt: new Date().toISOString()
+            });
+        }
+
+        // حذف حجز من Firestore
+        async function deleteBookingFromDB(docId) {
+            if (!db || !currentUser || !docId) return;
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'bookings', docId);
+                await deleteDoc(docRef);
+            } catch (error) {
+                console.error("خطأ أثناء إلغاء الحجز:", error);
+            }
+        }
+
+        // مستمعات تغيير الفلاتر للمشتري
+        document.getElementById('court-type').addEventListener('change', renderCustomerSchedule);
+        document.getElementById('booking-date').addEventListener('change', renderCustomerSchedule);
+        document.getElementById('start-slot-select').addEventListener('change', renderCustomerSchedule);
+        document.getElementById('duration-slots').addEventListener('change', renderCustomerSchedule);
+
+        // مستمعات تغيير الفلاتر للمالك
+        document.getElementById('owner-filter-date').addEventListener('change', renderOwnerDashboard);
+        document.getElementById('owner-filter-court').addEventListener('change', renderOwnerDashboard);
+
+        // معالجة نموذج حجز المشتري
+        document.getElementById('booking-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const court = document.getElementById('court-type').value;
+            const date = document.getElementById('booking-date').value;
+            const startSlot = Number(document.getElementById('start-slot-select').value);
+            const durationSlots = Number(document.getElementById('duration-slots').value);
+            const customerName = document.getElementById('client-name').value.trim();
+            const phone = document.getElementById('client-phone').value.trim();
+            const notes = document.getElementById('notes').value.trim();
+
+            const conflictCheck = checkConflict(court, date, startSlot, durationSlots);
+            if (conflictCheck.conflict) {
+                renderCustomerSchedule();
+                return;
+            }
+
+            const submitBtn = document.getElementById('submit-booking-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>جاري تثبيت الحجز...</span>`;
+
+            const refCode = 'LUS-' + Math.floor(1000 + Math.random() * 9000);
+            const timeRangeStr = formatRange(startSlot, durationSlots);
+            const durationLabel = formatDurationLabel(durationSlots);
+
+            try {
+                await saveBookingToDB({
+                    court,
+                    date,
+                    startSlot,
+                    durationSlots,
+                    customerName,
+                    phone,
+                    notes,
+                    refCode,
+                    source: 'online'
+                });
+
+                // عرض إيصال الحجز الرقمي
+                const receiptBox = document.getElementById('booking-receipt');
+                document.getElementById('receipt-ref').textContent = `#${refCode}`;
+                document.getElementById('receipt-details').innerHTML = `
+                    <div><strong>الملعب:</strong> ${court}</div>
+                    <div><strong>التاريخ:</strong> ${date}</div>
+                    <div><strong>الوقت:</strong> ${timeRangeStr} (${durationLabel})</div>
+                    <div><strong>الاسم:</strong> ${customerName} (${phone})</div>
+                `;
+
+                let waMsg = `السلام عليكم إدارة *ملاعب لوسيل* ⚽\n`;
+                waMsg += `تم تسجيل حجز مؤكد عبر الموقع الإلكتروني:\n\n`;
+                waMsg += `🎫 *رقم المرجع:* #${refCode}\n`;
+                waMsg += `🏟️ *الملعب:* ${court}\n`;
+                waMsg += `📅 *التاريخ:* ${date}\n`;
+                waMsg += `⏰ *الوقت:* ${timeRangeStr}\n`;
+                waMsg += `⏳ *المدة:* ${durationLabel}\n`;
+                waMsg += `👤 *الاسم:* ${customerName}\n`;
+                waMsg += `📱 *الجوال:* ${phone}\n`;
+                if (notes) waMsg += `📝 *ملاحظات:* ${notes}\n`;
+
+                document.getElementById('receipt-whatsapp-link').href = `https://wa.me/966542300780?text=${encodeURIComponent(waMsg)}`;
+                receiptBox.classList.remove('hidden');
+
+                // تنظيف حقول الاسم والملاحظات
+                document.getElementById('client-name').value = '';
+                document.getElementById('notes').value = '';
+            } catch (err) {
+                console.error("فشل حفظ الحجز:", err);
+            } finally {
+                submitBtn.innerHTML = `<i class="fa-solid fa-check-double text-lg"></i> <span>تأكيد وحجز الموعد الآن</span>`;
+                renderCustomerSchedule();
+            }
+        });
+
+        // معالجة تسجيل دخول المالك
+        document.getElementById('owner-login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pin = document.getElementById('owner-pin-input').value.trim();
+            if (pin === '1234') {
+                isOwnerAuthenticated = true;
+                document.getElementById('owner-pin-error').classList.add('hidden');
+                document.getElementById('owner-login-screen').classList.add('hidden');
+                document.getElementById('owner-dashboard-content').classList.remove('hidden');
+                renderOwnerDashboard();
+            } else {
+                document.getElementById('owner-pin-error').classList.remove('hidden');
+            }
+        });
+
+        // معالجة الإضافة اليدوية من لوحة تحكم المالك
+        document.getElementById('owner-manual-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const court = document.getElementById('manual-court').value;
+            const date = document.getElementById('manual-date').value;
+            const startSlot = Number(document.getElementById('manual-start').value);
+            const durationSlots = Number(document.getElementById('manual-duration').value);
+            const customerName = document.getElementById('manual-name').value.trim();
+            const phone = document.getElementById('manual-phone').value.trim();
+            const errorEl = document.getElementById('manual-error-msg');
+
+            const conflictCheck = checkConflict(court, date, startSlot, durationSlots);
+            if (conflictCheck.conflict) {
+                errorEl.textContent = conflictCheck.reason;
+                errorEl.classList.remove('hidden');
+                return;
+            }
+
+            errorEl.classList.add('hidden');
+            const refCode = 'ADM-' + Math.floor(1000 + Math.random() * 9000);
+
+            await saveBookingToDB({
+                court,
+                date,
+                startSlot,
+                durationSlots,
+                customerName,
+                phone,
+                notes: 'حجز مسجل بواسطة الإدارة',
+                refCode,
+                source: 'admin'
+            });
+
+            document.getElementById('manual-name').value = '';
+            document.getElementById('manual-phone').value = '';
+            document.getElementById('owner-manual-form').classList.add('hidden');
+            document.getElementById('owner-filter-date').value = date;
+            renderOwnerDashboard();
+        });
+
+        // تهيئة Firebase والمصادقة والمزامنة الفورية
+        async function initFirebaseSystem() {
+            renderCustomerSchedule(); // رسم أولي فوري
+
+            if (!firebaseConfig) {
+                document.getElementById('slots-loading-indicator').innerHTML = `<span class="text-amber-400">وضع المعاينة المحلية</span>`;
+                return;
+            }
+
+            try {
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                onAuthStateChanged(auth, (user) => {
+                    if (!user) return;
+                    currentUser = user;
+
+                    const bookingsCol = collection(db, 'artifacts', appId, 'public', 'data', 'bookings');
+                    onSnapshot(bookingsCol, (snapshot) => {
+                        allBookings = snapshot.docs.map(docSnap => ({
+                            id: docSnap.id,
+                            ...docSnap.data()
+                        }));
+
+                        document.getElementById('slots-loading-indicator').innerHTML = `
+                            <span class="w-2 h-2 rounded-full bg-lusail-emerald inline-block"></span> محدث لحظياً
+                        `;
+
+                        renderCustomerSchedule();
+                        if (isOwnerAuthenticated) {
+                            renderOwnerDashboard();
+                        }
+                    }, (error) => {
+                        console.error("خطأ في مزامنة الحجوزات:", error);
+                    });
+                });
+            } catch (err) {
+                console.error("خطأ في تهيئة قاعدة البيانات:", err);
+            }
+        }
+
+        initFirebaseSystem();
+    </script>
+</body>
+</html>
